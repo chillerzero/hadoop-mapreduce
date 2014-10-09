@@ -4,7 +4,7 @@ import sys
 
 # Find monetary value for highest individual sale for each separate store
 
-highestSale = 0
+highestSale = float(0)
 oldKey = None
 
 for line in sys.stdin:
@@ -17,12 +17,12 @@ for line in sys.stdin:
     if oldKey and oldKey != thisKey:
         print oldKey, "\t", highestSale
         oldKey = thisKey
-        highestSale = 0
+        highestSale = float(0)
 
     oldKey = thisKey
     
-    if highestSale < thisSale:
-        highestSale = thisSale
+    if highestSale < float(thisSale):
+        highestSale = float(thisSale)
 
 if oldKey != None:
     print oldKey, "\t", highestSale
