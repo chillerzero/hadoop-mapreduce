@@ -6,7 +6,6 @@ import sys
 
 salesTotal = 0
 numSales = 0
-oldKey = None
 
 for line in sys.stdin:
     data_mapped = line.strip().split("\t")
@@ -15,15 +14,7 @@ for line in sys.stdin:
 
     thisKey, thisSale, thisCount = data_mapped
 
-    if oldKey and oldKey != thisKey:
-        print oldKey, "\t", salesTotal, "\t", numSales
-        oldKey = thisKey
-        salesTotal = 0
-        numSales = 0
-
-    oldKey = thisKey
     salesTotal += float(thisSale)
-    numSales += int(thisCount)
+    numSales += long(thisCount)
 
-if oldKey != None:
-    print oldKey, "\t", salesTotal, "\t", numSales
+print "Total Sales Value:", "\t", salesTotal, "Total Sales Number:", "\t", numSales
