@@ -9,13 +9,40 @@ import csv
 
 
 def mapper():
-        reader = csv.reader(sys.stdin, delimiter='\t')
-        writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_ALL)
+    reader = csv.reader(sys.stdin, delimiter='\t')
+    writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_ALL)
+    
+    string_list = []
+    line_holder = []
 
-        for line in reader:
+    for line in reader:
 
-            # YOUR CODE HERE
-            writer.writerow(line)
+        text = line[4]
+        
+        if len(string_list) < 10:
+            for i in range(0,len(string_list)):
+                if len(text) < len(string_list[i]):
+                    string_list.insert(i,text)
+                    line_holder.insert(i,line)
+                    break
+            if text not in string_list:
+                string_list.append(text)
+                line_holder.append(line)
+        else:
+            if len(text) > len(string_list[0]):
+                for i in range(0,len(string_list)):
+                    if len(text) < len(string_list[i]):
+                        string_list.insert(i,text)
+                        line_holder.insert(i,line)
+                        break
+                if text not in string_list:
+                    string_list.append(text)
+                    line_holder.insert(line)
+                string_list.remove(string_list[0])
+                line_holder.remove(line_holder[0])
+
+    for line in line_holder:
+        writer.writerow(line)
 
 test_text = """\"\"\t\"\"\t\"\"\t\"\"\t\"333\"\t\"\"
 \"\"\t\"\"\t\"\"\t\"\"\t\"88888888\"\t\"\"
