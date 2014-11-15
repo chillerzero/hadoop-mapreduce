@@ -11,4 +11,5 @@ def mapper():
     for token in reader:
         data = line.strip()
         if data.lower() == 'fantastic':
+            token = token + "\t" + 1
             writer.writerow(token)
