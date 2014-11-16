@@ -13,3 +13,13 @@ def mapper():
         if data.lower() == 'fantastic':
             token = token + "\t" + 1
             writer.writerow(token)
+
+def main():
+    import StringIO
+    f = open('testfile','r')
+    sys.stdin = StringIO.StringIO(f.read())
+    mapper()
+    sys.stdin = sys.__stdin__
+
+if __name__ == "__main__":
+    main()
