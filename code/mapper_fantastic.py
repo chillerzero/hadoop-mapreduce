@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#/usr/bin/python
 
 import sys
 import csv
@@ -16,7 +16,7 @@ def mapper():
 
 def main():
     import StringIO
-    f = open('testfile','r')
+    f = open('testforum.tsv','r')
     sys.stdin = StringIO.StringIO(f.read())
     mapper()
     sys.stdin = sys.__stdin__
